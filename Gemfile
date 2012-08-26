@@ -5,6 +5,7 @@ gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'mysql2'
+gem 'whenever', :require => false
 
 group :production do
 	gem 'google-analytics-rails'

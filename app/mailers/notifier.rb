@@ -6,8 +6,4 @@ class Notifier < ActionMailer::Base
 		@name = name
 		mail(:to => user.email, :subject => "#{name} is available!")
 	end
-
-	def just_send
-		mail(:to => "aaronneyer@gmail.com", :subject => "Test Email")
-	end
 end
