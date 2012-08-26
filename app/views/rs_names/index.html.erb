@@ -1,1 +1,12 @@
+<h1>Tracked Names</h1>
+<% unless signed_in? %>
+	<p>You must be signed in to view your tracked names.</p>
+<% end %>
+<% if @rs_names.present? %>
+	<%= will_paginate %>
+	<ul>
+		<%= render @rs_names %>
+	</ul>
+	<%= will_paginate %>
+<% end %>
 <%= link_to 'New Rs name', new_rs_name_path %>

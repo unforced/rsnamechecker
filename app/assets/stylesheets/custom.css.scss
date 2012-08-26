@@ -1,0 +1,84 @@
+@import 'bootstrap';
+
+/* mixins */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+/* universal */
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+}
+
+.center {
+	text-align: center;
+	h1 {
+		margin-bottom: 10px;
+	}
+}
+
+/* footer */
+
+footer {
+	margin-top: 45px;
+	padding: 5px;
+	border-top: 1px solid $grayMediumLight;
+	color: $grayLight;
+	a {
+		color: $gray;
+		&:hover {
+			color: $grayDarker;
+		}
+	}
+	small {
+		position: absolute;
+		float: left;
+	}
+	.center {
+		float: left;
+		position: absolute;
+		width: 30%;
+		margin-left: 35%;
+		margin-right: 35%;
+	}
+	ul {
+		float: right;
+		list-style: none;
+		li {
+			float: left;
+			margin-left: 10px;
+		}
+	}
+}
+
+/* miscellaneous */
+
+.debug_dump {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	@include box_sizing;
+}
+
+/* forms */
+
+.error_explanation {
+	@extend .alert-message;
+	@extend .block-message;
+	@extend .error;
+}
+
+.field_with_errors {
+	@extend .control-group.error;
+}

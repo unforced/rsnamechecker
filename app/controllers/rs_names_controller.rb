@@ -2,7 +2,11 @@ class RsNamesController < ApplicationController
   # GET /rs_names
   # GET /rs_names.json
   def index
-    @rs_names = RsName.all
+		if admin_signed_in?
+    	@rs_names = RsName.paginate(page: params[:page], per_page: 30)
+		elsif signed_in?
+			@rs_names = User.current_user.rs_names.paginate(page: params[:page], per_page: 30)
+		end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,11 +45,20 @@ class RsNamesController < ApplicationController
   # POST /rs_names.json
   def create
     @rs_name = RsName.new(params[:rs_name])
-		@rs_name.user = User.find_or_create_by_email(params[:user_email]) if params[:user_email]
+		if signed_in?
+			@rs_name.user = User.current_user
+		elsif params[:user_email]
+			user = User.find_or_initialize_by_email(params[:user_email])
+			user.save(:validate => false) if user.new_record?
+			@rs_name.user = user
+		else
+			failed = true
+			flash[:notice] = "Please include an email"
+		end
 
     respond_to do |format|
-      if @rs_name.save
-        format.html { redirect_to @rs_name, notice: 'Rs name was successfully created.' }
+      if !failed && @rs_name.save
+        format.html { redirect_to rs_names_path, notice: 'Rs name is now being tracked.' }
         format.json { render json: @rs_name, status: :created, location: @rs_name }
       else
         format.html { render action: "new" }
@@ -58,10 +71,19 @@ class RsNamesController < ApplicationController
   # PUT /rs_names/1.json
   def update
     @rs_name = RsName.find(params[:id])
-		@rs_name.user = User.find_or_create_by_email(params[:user_email]) if params[:user_email]
+		if signed_in?
+			@rs_name.user = User.current_user
+		elsif params[:user_email]
+			user = User.find_or_initialize_by_email(params[:user_email])
+			user.save(:validate => false) if user.new_record?
+			@rs_name.user = user
+		else
+			failed = true
+			flash[:notice] = "Please include an email"
+		end
 
     respond_to do |format|
-      if @rs_name.update_attributes(params[:rs_name])
+      if !failed && @rs_name.update_attributes(params[:rs_name])
         format.html { redirect_to @rs_name, notice: 'Rs name was successfully updated.' }
         format.json { head :no_content }
       else
