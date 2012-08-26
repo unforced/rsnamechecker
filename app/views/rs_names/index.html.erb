@@ -15,9 +15,6 @@
     <td><%= rs_name.name %></td>
     <td><%= rs_name.user.email if rs_name.user %></td>
 		<td><%= rs_name.notified ? "Yes" : "No" %></td>
-    <td><%= link_to 'Show', rs_name %></td>
-    <td><%= link_to 'Edit', edit_rs_name_path(rs_name) %></td>
-    <td><%= link_to 'Destroy', rs_name, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
