@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def set_user
-		User.current_user = User.find_by_remember_token(cookies[:remember_token]) if cookies[:remember_token]
+		User.current_user = cookies[:remember_token].present? ? User.find_by_remember_token(cookies[:remember_token]) : nil
 	end
 
 end
