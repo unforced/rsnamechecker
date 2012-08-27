@@ -2,6 +2,7 @@ class RsName < ActiveRecord::Base
   attr_accessible :name, :user_id
 	belongs_to :user
 	validates :user_id, presence: true
+	validates :name, format: { with: /\A[\w ]{1,12}\z/ }
 
 	def self.check_all_names
 		names = RsName.all.select{|n| !n.notified}.collect{|n| n.name.gsub(' ', '_')}.join(' ')

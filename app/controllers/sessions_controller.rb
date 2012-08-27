@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 		if user && params[:session][:password] && user.password_digest.present? && user.authenticate(params[:session][:password])
 			flash[:success] = 'You win the internetz'
 			sign_in user
-			redirect_to user
+			redirect_to root_path
 		else
 			flash.now[:error] = "Sorry, you are incorrect.  Y u try hax?"
 			render 'new'
