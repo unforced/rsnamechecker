@@ -1,6 +1,8 @@
 <h1>Tracked Names</h1>
 <% unless signed_in? %>
-	<p>You must be signed in to view your tracked names.</p>
+	<p>To track a name, click "Track new name" below and enter the name you want to track as well as the email you want to be notified at.<br />
+	When the name becomes available(Checked every 10 minutes), you will be sent an email.<br />
+	If you want to be able to see all of the names you are tracking, as well as be able to delete them, please sign up for an account.</p>
 <% end %>
 <% if @rs_names.present? %>
 	<%= will_paginate %>
