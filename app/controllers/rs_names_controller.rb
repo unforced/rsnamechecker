@@ -1,4 +1,6 @@
 class RsNamesController < ApplicationController
+	before_filter :signed_in_user, only: [:show, :edit, :update]
+	before_filter :admin_user, only: [:show, :edit, :update]
   # GET /rs_names
   # GET /rs_names.json
   def index
@@ -58,7 +60,7 @@ class RsNamesController < ApplicationController
 
     respond_to do |format|
       if !failed && @rs_name.save
-        format.html { redirect_to rs_names_path, notice: 'Rs name is now being tracked.' }
+        format.html { redirect_to root_path, notice: 'Rs name is now being tracked.' }
         format.json { render json: @rs_name, status: :created, location: @rs_name }
       else
         format.html { render action: "new" }
@@ -84,7 +86,7 @@ class RsNamesController < ApplicationController
 
     respond_to do |format|
       if !failed && @rs_name.update_attributes(params[:rs_name])
-        format.html { redirect_to @rs_name, notice: 'Rs name was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Rs name was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -100,7 +102,7 @@ class RsNamesController < ApplicationController
     @rs_name.destroy
 
     respond_to do |format|
-      format.html { redirect_to rs_names_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end

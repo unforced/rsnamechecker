@@ -1,3 +1,4 @@
 <li>
-	<%= rs_name.name %> -- <%= rs_name.user.email %>: <%= rs_name.notified? ? "" : "Not" %> Available
+<%= rs_name.name %> -- <%= rs_name.user.email %>: <%= rs_name.notified? ? "" : "Not" %> Available --- 
+<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
 </li>

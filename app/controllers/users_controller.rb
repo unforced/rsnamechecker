@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+	before_filter :signed_in_user, only: [:index, :destroy, :edit, :show, :update]
+	before_filter :correct_user, only: [:destroy, :edit, :show, :update]
+	before_filter :admin_user, only: [:index]
   # GET /users
   # GET /users.json
   def index
@@ -45,7 +48,7 @@ class UsersController < ApplicationController
 		if @olduser && @olduser.password_digest.nil?
 			respond_to do |format|
 				if @olduser.update_attributes(params[:user])
-					format.html { redirect_to @olduser, notice: 'User was successfully created.' }
+					format.html { redirect_to root_path, notice: 'User was successfully created.' }
 					format.json { render json: @olduser, status: :created, location: @olduser }
 				else
 					format.html { render action: "new" }
@@ -55,7 +58,7 @@ class UsersController < ApplicationController
 		else
 			respond_to do |format|
 				if @user.save
-					format.html { redirect_to @user, notice: 'User was successfully created.' }
+					format.html { redirect_to root_path, notice: 'User was successfully created.' }
 					format.json { render json: @user, status: :created, location: @user }
 				else
 					format.html { render action: "new" }
@@ -72,7 +75,7 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
 			if @user.update_attributes(params[:user])
-				format.html { redirect_to @user, notice: 'User was successfully updated.' }
+				format.html { redirect_to root_path, notice: 'User was successfully updated.' }
 				format.json { head :no_content }
 			else
 				format.html { render action: "edit" }
@@ -88,7 +91,7 @@ class UsersController < ApplicationController
 		@user.destroy
 
 		respond_to do |format|
-			format.html { redirect_to users_url }
+			format.html { redirect_to root_path }
 			format.json { head :no_content }
 		end
 	end
