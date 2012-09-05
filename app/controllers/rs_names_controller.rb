@@ -51,7 +51,7 @@ class RsNamesController < ApplicationController
 			@rs_name.user = User.current_user
 		elsif params[:user_email]
 			user = User.find_or_initialize_by_email(params[:user_email])
-			user.save(:validate => false) if user.new_record?
+			user.save if user.new_record?
 			@rs_name.user = user
 		else
 			failed = true
