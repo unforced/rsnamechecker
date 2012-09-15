@@ -5,7 +5,11 @@ class RsNamesController < ApplicationController
   # GET /rs_names.json
   def index
 		if admin_signed_in?
-    	@rs_names = RsName.paginate(page: params[:page], per_page: 30)
+			if params[:user_id]
+				@rs_names = RsName.paginate(page: params[:page], per_page: 30, :conditions => {:user_id => params[:user_id]})
+			else
+	    	@rs_names = RsName.paginate(page: params[:page], per_page: 30)
+			end
 		elsif signed_in?
 			@rs_names = User.current_user.rs_names.paginate(page: params[:page], per_page: 30)
 		end
