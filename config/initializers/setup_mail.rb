@@ -2,8 +2,8 @@ ActionMailer::Base.smtp_settings = {
 	:address => "smtp.gmail.com",
 	:port => 587,
 	:domain => "aaronneyer.com",
-	:user_name => "rsnamechecker@aaronneyer.com",
-	:password => "rsnameentropy",
+	:user_name => APP_CONFIG['email_username'],
+	:password => APP_CONFIG['email_password'],
 	:authentication => "plain",
 	:enable_starttls_auto => true
 }
