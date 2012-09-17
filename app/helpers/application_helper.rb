@@ -19,4 +19,9 @@ module ApplicationHelper
 		link_to(name, "#", :class => "add_fields", data: {:id => id, :fields => fields.gsub("\n", '')})
 	end
 
+	def names_tracked
+		names = RsName.all.group_by{|r| r.notified?}
+		"Currently tracking #{pluralize(names[false].count, "name")}. #{pluralize(names[true].count, "name")} found so far."
+	end
+
 end

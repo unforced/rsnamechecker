@@ -1,7 +1,7 @@
 NameCheckRails::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 	#
-	GA.tracker = 'UA-25796520-1'
+	GA.tracker = 'UA-34872092-1'
 
   # Code is not reloaded between requests
   config.cache_classes = true

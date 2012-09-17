@@ -2,6 +2,14 @@
 <div class="navbar-inner my-header">
 	<div class="container-fluid">
 		<%= link_to "RS Name Checker", root_path, class: 'brand' %>
+		<nav>
+		<ul class="nav">
+			<li><span class="nav_item"><%= names_tracked %></span></li>
+		</ul>
+		<ul class="nav pull-right">
+			<li><%= render 'layouts/paypal_button' %></li>
+		</ul>
+		</nav>
 	</div>
 </div>
 </header>
