@@ -1,0 +1,9 @@
+%header.navbar
+  .navbar-inner.my-header
+    .container-fluid
+      = link_to "Rs Name Checker", root_path, class: 'brand'
+      %nav
+        %ul.nav
+          %li.nav_item= names_tracked
+        %ul.nav.pull-right
+          %li= render 'layouts/paypal_button'

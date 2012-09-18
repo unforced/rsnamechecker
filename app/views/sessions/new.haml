@@ -1,0 +1,11 @@
+= provide(:title, "Sign in")
+%h1 Sign in
+=form_for(:session, url: sessions_path) do |f|
+  = f.label :email
+  = f.text_field :email
+  %br/
+  = f.label :password
+  = f.password_field :password
+  %br/
+  = f.submit "Sign in"
+= link_to "Sign up", signup_path

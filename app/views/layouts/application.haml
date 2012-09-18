@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title= full_title(yield(:title))
+    = analytics_init if Rails.env.production?
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body.body
+    = render 'layouts/header'
+    .container-fluid
+      .row-fluid
+        .span12
+          .well
+            - flash.each do |key, value|
+              %div{:class => "alert-alert-#{key}"}= value
+            = yield
+    = render 'layouts/footer'
+    = debug(params) if Rails.env.development?

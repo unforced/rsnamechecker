@@ -1,0 +1,12 @@
+= form_for(@rs_name) do |f|
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  - unless signed_in?
+    .field
+      = label_tag :email
+      %br/
+      = text_field_tag :user_email, (@rs_name.user.email if @rs_name.user)
+  .actions
+    = f.submit

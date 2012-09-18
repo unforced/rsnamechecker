@@ -1,0 +1,8 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @rs_name.name
+%p
+  %b User:
+  = @rs_name.user_id
+#{link_to"Edit", edit_rs_name_path(@rs_name)} | #{link_to 'Back', rs_names_path}

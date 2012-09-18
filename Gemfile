@@ -7,6 +7,8 @@ gem 'bootstrap-will_paginate'
 gem 'mysql2'
 gem 'whenever', :require => false
 gem 'bcrypt-ruby'
+gem 'haml'
+gem 'rdiscount'
 
 group :production do
 	gem 'google-analytics-rails'

@@ -1,0 +1,10 @@
+%footer.footer
+  %small
+    Site built by #{link_to "Aaron Neyer", "http://aaronneyer.com"}
+  %nav
+    %ul
+      %li
+        - if signed_in?
+          = link_to "#{User.current_user.email}: Sign Out", signout_path, method: :delete
+        - else
+          = link_to "Sign in", signin_path

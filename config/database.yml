@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   reconnect: true
-  database: rs_name_check_dev
+  database: rs_name_check_prod
   username: <%= APP_CONFIG['database_username'] %>
   password: <%= APP_CONFIG['database_password'] %>
   host: <%= APP_CONFIG['database_host'] %>
