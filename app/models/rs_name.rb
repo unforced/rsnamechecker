@@ -3,6 +3,7 @@ class RsName < ActiveRecord::Base
 	belongs_to :user
 	validates :user_id, presence: true
 	validates :name, format: { with: /\A[\w ]{1,12}\z/ }
+	validate :limit_names, :on => :create
 
 	def self.check_all_names
 		names = RsName.all.select{|n| !n.notified}.collect{|n| n.name.gsub(' ', '_')}.uniq.join(' ')
@@ -13,4 +14,11 @@ class RsName < ActiveRecord::Base
 			rs_name.update_attribute(:notified, true)
 		end
 	end
+
+	def limit_names
+		if self.user.rs_names.count >= 50
+			errors.add(:rs_names, "are limited to 50 per person.")
+		end
+	end
+
 end
