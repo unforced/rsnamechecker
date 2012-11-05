@@ -1,3 +1,3 @@
-every 15.minutes do
-	runner "RsName.check_all_names"
+every 1.hour do
+  runner "RsName.check_all_names"
 end
